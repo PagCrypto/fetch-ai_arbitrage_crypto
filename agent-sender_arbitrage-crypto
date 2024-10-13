@@ -110,6 +110,11 @@ async def on_interval_opportunities(ctx: Context):
 async def handle_message(ctx: Context, sender: str, msg: MessageRequest):
     ctx.logger.info(f"Received message from {sender} : {msg.message}")
 
+
+@agent.on_message(model=OpportunitiesRequest)
+async def handle_message(ctx: Context, sender: str, msg: OpportunitiesRequest):
+    ctx.logger.info(f"Received message from {sender} : {msg.message}")
+
 @agent.on_event("startup")
 async def send_message(ctx: Context):
     ctx.logger.info(f"Looking for arbitrage opportunities")
