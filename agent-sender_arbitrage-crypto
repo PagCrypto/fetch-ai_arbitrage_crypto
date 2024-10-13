@@ -95,15 +95,11 @@ def execute_binance_trade(symbol, side, quantity):
     return response.json()
 
 # time interval with the specified 'period' in seconds.
-@agent.on_interval(period=1)
+@agent.on_interval(period=5)
 async def on_interval_opportunities(ctx: Context):
     fetch_prices()
-
-    # Encontra e exibe oportunidades de arbitragem
     opportunities = find_arbitrage_opportunities()
-
-    request = MessageRequest(opportunities=opportunities);
-    ctx.send(agentConsumer, request)
+    await ctx.send(agentConsumer, MessageRequest(opportunities=opportunities))
 
 
 @agent.on_message(model=MessageRequest)
