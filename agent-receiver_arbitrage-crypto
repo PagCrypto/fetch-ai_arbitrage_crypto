@@ -33,7 +33,7 @@ async def handle_opportunities(ctx: Context, sender: str, msg: OpportunitiesRequ
     else:
         ctx.logger.info("Nenhuma oportunidade de arbitragem foi encontrada.")
 
-    ctx.storage.set("oportunities", msg.address)
+    ctx.storage.set("oportunities", msg.opportunities)
   
 if __name__ == "__main__":
     agent.run()
