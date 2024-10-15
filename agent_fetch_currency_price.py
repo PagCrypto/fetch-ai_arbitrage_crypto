@@ -20,7 +20,6 @@ def get_btc_price():
 async def log_btc_price(ctx: Context):
     price = get_btc_price()
 
-    # Only produce an alert if the price has moved across the threshold in either direction
     alert = None
     if price:
         ctx.logger.info(f"The current Bitcoin price is: {price} EURO")
