@@ -39,7 +39,6 @@ class OpportunitiesRequest(Model):
     opportunities = []
 
 def fetch_prices():
-    """Coleta os preços de Bitcoin em três exchanges diferentes."""
     binance_price = fetch_binance_price()
     coinbase_price = fetch_coinbase_price()
     kraken_price = fetch_kraken_price()
@@ -60,7 +59,6 @@ def fetch_kraken_price():
     return float(data['result']['XXBTZUSD']['c'][0])
 
 def find_arbitrage_opportunities():
-    """Compara os preços coletados e identifica oportunidades de arbitragem."""
     opportunities = []
 
     # Verifica se todos os preços foram coletados antes de comparar
@@ -81,7 +79,6 @@ def find_arbitrage_opportunities():
     return opportunities
 
 def execute_binance_trade(symbol, side, quantity):
-    """Executa uma ordem de trade de mercado na Binance."""
     base_url = 'https://api.binance.com'
     endpoint = '/api/v3/order'
     timestamp = int(time.time() * 1000)
@@ -94,7 +91,7 @@ def execute_binance_trade(symbol, side, quantity):
     response = requests.post(url, headers=headers)
     return response.json()
 
-# time interval with the specified 'period' in seconds.
+# 'period' in seconds.
 @agent.on_interval(period=5)
 async def on_interval_opportunities(ctx: Context):
     fetch_prices()
