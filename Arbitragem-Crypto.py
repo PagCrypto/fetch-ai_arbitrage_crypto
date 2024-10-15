@@ -38,7 +38,6 @@ class ArbitrageAgent:
         return float(data['result']['XXBTZUSD']['c'][0])
 
     def find_arbitrage_opportunities(self):
-        """Compara os preços coletados e identifica oportunidades de arbitragem."""
         opportunities = []
 
         if self.binance_price < self.coinbase_price:
@@ -56,7 +55,6 @@ class ArbitrageAgent:
         return opportunities
 
     def execute_binance_trade(self, symbol, side, quantity):
-        """Executa uma ordem de trade de mercado na Binance."""
         base_url = 'https://api.binance.com'
         endpoint = '/api/v3/order'
         timestamp = int(time.time() * 1000)
@@ -70,7 +68,6 @@ class ArbitrageAgent:
         return response.json()
 
     def act(self):
-        """Método principal para executar o comportamento do agente."""
         # Coleta os preços
         self.fetch_prices()
 
